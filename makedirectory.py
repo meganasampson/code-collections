@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 filename = str(input("filename?:"))#get file that has wanted structure in it (see filestructure.md)
 filelist = []
