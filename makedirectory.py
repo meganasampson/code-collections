@@ -1,10 +1,15 @@
 import os
 from pathlib import Path
+import click
 
-filename = str(input("filename?:"))#get file that has wanted structure in it (see filestructure.md)
+
 filelist = []
+finalstructure = []
 
-def get_dictionary_word_list():
+@click.command()
+@click.option('--filename', default='structureexample.md', help='file containing desired option, default = structureexample.md')
+
+def get_dictionary_word_list(filename):
     """
     open file with the file structure and put in a list
     """
@@ -12,7 +17,8 @@ def get_dictionary_word_list():
     for word in f.read().split():
         filelist.append(word)
 
-get_dictionary_word_list()
+    splitter()
+
 
 def splitter():
     """
@@ -29,14 +35,9 @@ def splitter():
         else:
             temp_list.append(i)
     result.append(temp_list)
-    return result
+    removesymbol(result)
 
-splitlist = splitter()
-print(splitlist)
-
-finalstructure = []
-
-def removesymbol():
+def removesymbol(splitlist):
     """
     get rid of ugly ├── symbols
     """
@@ -44,8 +45,7 @@ def removesymbol():
         removedstuff = [x for x in i if "├──" not in x]
         finalstructure.append(removedstuff)
     del finalstructure[0]
-
-removesymbol()
+    structuremaker()
 
 def structuremaker():
     """
@@ -56,7 +56,8 @@ def structuremaker():
         print(x)
         os.makedirs(x)
 
-structuremaker()
+if __name__ == '__main__':
+    get_dictionary_word_list()
 
 
         
