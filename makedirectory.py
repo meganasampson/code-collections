@@ -55,11 +55,15 @@ def structuremaker(opsys):
     try:
         if opsys == "1"
             for i in finalstructure:
-            x = "/".join(i)
-            print(x)
-            os.makedirs(x)
+                x = "/".join(i)
+                print(x)
+                os.makedirs(x)
         elif opsys == "2":
-            print("No windows file path functionality yet")#will add soon.
+            print("No windows functionality yet")#doesnt work bc windows doesnt like ├── symbol :(
+                for i in finalstructure:
+                x = "\\".join(i)
+                print(x)
+                os.makedirs(x)
     except FileExistsError:
         print(f"The name -{x}- is already in use in this directory. Choose a different name or rename the existing folder.")
 
