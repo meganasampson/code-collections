@@ -8,8 +8,9 @@ finalstructure = []
 
 @click.command()
 @click.option('--filename', default='structureexample.md', help='file containing desired option, default = structureexample.md')
+@click.option('--opsys', prompt='os?', help='os file structure, 1 for linux, 2 for windows')
 
-def get_dictionary_word_list(filename):
+def get_dictionary_word_list(filename, opsys):
     """
     open file with the file structure and put in a list
     """
@@ -17,10 +18,10 @@ def get_dictionary_word_list(filename):
     for word in f.read().split():
         filelist.append(word)
 
-    splitter()
+    splitter(opsys)
 
 
-def splitter():
+def splitter(opsys):
     """
     split the list of directories and ├── symbols imto lists that will make paths
     """
@@ -35,9 +36,9 @@ def splitter():
         else:
             temp_list.append(i)
     result.append(temp_list)
-    removesymbol(result)
+    removesymbol(result, opsys)
 
-def removesymbol(splitlist):
+def removesymbol(splitlist, opsys):
     """
     get rid of ugly ├── symbols
     """
@@ -45,16 +46,23 @@ def removesymbol(splitlist):
         removedstuff = [x for x in i if "├──" not in x]
         finalstructure.append(removedstuff)
     del finalstructure[0]
-    structuremaker()
+    structuremaker(opsys)
 
-def structuremaker():
+def structuremaker(opsys):
     """
-    actually make paths and create folders with them
+    actually make paths and create folders with them. Gives error to warn about naming issues.
     """
-    for i in finalstructure:
-        x = "/".join(i)
-        print(x)
-        os.makedirs(x)
+    try:
+        if opsys == "1"
+            for i in finalstructure:
+            x = "/".join(i)
+            print(x)
+            os.makedirs(x)
+        elif opsys == "2":
+            print("No windows file path functionality yet")#will add soon.
+    except FileExistsError:
+        print(f"The name -{x}- is already in use in this directory. Choose a different name or rename the existing folder.")
+
 
 if __name__ == '__main__':
     get_dictionary_word_list()
