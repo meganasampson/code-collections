@@ -2,8 +2,7 @@
 ├── folder2
 ├──├── folder22
 ├──├──├── folder222
-├──├── foldersomething
+├── foldersomething
 ├── foldertest
-├──├── folderdoubletest
 ├── folder3
 ├──├── folder33
