@@ -1,28 +1,34 @@
 import os
 from pathlib import Path
-import click
+import argparse
 
 
 filelist = []
 finalstructure = []
 
-@click.command()
-@click.option('--filename', default='structureexample.txt', help='file containing desired option, default = structureexample.md')
 
-def get_dictionary_word_list(filename):
+parser = argparse.ArgumentParser()
+parser.add_argument("--filename", default = 'structureexample.txt', type = str)
+parser.add_argument("--location", default = str(os.getcwd()), type = str)
+
+args = parser.parse_args()
+
+def get_dictionary_word_list(filename, location):
     """
     open file with the file structure and put in a list
     """
     f = open(filename)
     for word in f.read().split():
         filelist.append(word)
-    folder_maker(filelist)
+    folder_maker(filelist, location)
 
 
-def folder_maker(filelist):
+def folder_maker(filelist, location):
     """
     loops through file structure list and makes folders based on ├── symbol
     """
+    os.chdir(location)
+
     level = 1
 
     for i in range(len(filelist)):
@@ -58,7 +64,7 @@ def folder_maker(filelist):
 
 
 if __name__ == '__main__':
-    get_dictionary_word_list()
+    get_dictionary_word_list(args.filename, args.location)
 
 
         
