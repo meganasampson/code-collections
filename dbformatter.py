@@ -8,18 +8,19 @@ from pathlib import Path
 
 #The os module provides a portable way of using operating system dependent functionality.
 import os
-import click
+import argparse
 
 #Imports all the files into a dictionary
 
-@click.command()
-@click.option('--path', default=os.getcwd(), help='Directory in which the files you want to change are')
-@click.option('--old', prompt='What variable do you want to change?',
-              help='The old variable which you want to change')
-@click.option('--new', prompt='What is the new variable name?',
-              help='The new name of the variable you are changing')
+parser = argparse.ArgumentParser()
+parser.add_argument('--path', default=os.getcwd())
+parser.add_argument('--old')
+parser.add_argument('--new')
+
+args = parser.parse_args()
+
 def variablerename(path, old, new):
-    #This renames the column headings for Reference
+    #This renames the column headings
 
     #Assigns the variables and correction factor
     #Old_Variable = 'meta.refstr'
@@ -53,4 +54,4 @@ def variablerename(path, old, new):
         d[i].to_excel(i+ '.xlsx') #export to excel
 
 if __name__ == '__main__':
-    variablerename()
+    variablerename(args.path, args.old, args.new)
