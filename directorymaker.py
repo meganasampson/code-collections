@@ -18,10 +18,10 @@ def get_dictionary_word_list(filename, location):
     open file with the file structure and put in a list
     """
     f = open(filename)
-    for word in f.read().replace(" ", "").replace("│","├──").split():
+    for word in f.read().replace("   ", "").replace("│","├──").split():
         filelist.append(word)
     print(filelist)
-    folder_maker(filelist, location)
+    #folder_maker(filelist, location)
 
 
 def folder_maker(filelist, location):
