@@ -4,8 +4,9 @@
 Creates directory structure of a text file formatted as examples/structureexample.txt
 - Run the command below to create the folder structure of examples/structureexample.txt
 ```
-python directorymaker.py
+python directorymaker_argparse.py
 ```
+
 ### Options
 - --filename : path the file that contains the desired directory structure, default = examples/structureexample.txt
 - --location : directory to start creation from, default = current directory

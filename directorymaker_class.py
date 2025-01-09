@@ -1,18 +1,11 @@
 import os
 from pathlib import Path
-import argparse
 from dataclasses import dataclass
 
 
 filelist = []
 finalstructure = []
 
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--filename", default = 'examples/structureexample.txt', type = str)
-parser.add_argument("--location", default = str(os.getcwd()), type = str)
-
-args = parser.parse_args()
 
 class Maker():
     def __init__(self, filename, location):
