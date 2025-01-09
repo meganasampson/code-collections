@@ -15,10 +15,13 @@ parser.add_argument("--location", default = str(os.getcwd()), type = str)
 args = parser.parse_args()
 
 class Maker():
-    def __init__(self, filename, location) -> None:
+    def __init__(self, filename, location):
         self.filelist = []
         self.filename: float = filename
         self.location = location
+
+    def start_creation(self):
+        self.get_dictionary_word_list()
 
     def get_dictionary_word_list(self):
         """
@@ -70,13 +73,9 @@ class Maker():
                     level = level2
 
 
-
-
-
-
 if __name__ == '__main__':
-    write_files = Maker(args.filename, args.location)
-    write_files.get_dictionary_word_list()
+    file_writer = Maker('examples/structureexample.txt', str(os.getcwd()))
+    file_writer.start_creation()
 
 
         
