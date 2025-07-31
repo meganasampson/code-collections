@@ -8,7 +8,7 @@ finalstructure = []
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--filename", default = 'examples/structureexample.json', type = str)
+parser.add_argument("--filename", default = 'data/structureexample.json', type = str)
 parser.add_argument("--location", default = str(os.getcwd()), type = str)
 
 args = parser.parse_args()
